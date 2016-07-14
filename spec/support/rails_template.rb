@@ -15,7 +15,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :taggings
 
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-      attr_accessible :id, :title, :body, :starred, :author, :position, :published_at, :author_id, :custom_category_id
+      attr_accessible :id, :title, :body, :starred, :author, :position, :published_at, :author_id, :custom_category_id, :category
     end
   end
 RUBY
@@ -32,7 +32,7 @@ create_file 'app/models/blog/post.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :taggings
 
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-      attr_accessible :title, :body, :starred, :author, :position, :published_at, :author_id, :custom_category_id
+      attr_accessible :title, :body, :starred, :author, :position, :published_at, :author_id, :custom_category_id, :category
     end
   end
 RUBY
@@ -72,7 +72,7 @@ create_file 'app/models/category.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :posts
 
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-      attr_accessible :name
+      attr_accessible :name, :description
     end
   end
 RUBY
