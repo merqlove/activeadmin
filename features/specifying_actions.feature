@@ -90,4 +90,3 @@ Feature: Specifying Actions
     Then I should see "Review: Hello World"
     And I should see the page title "Review"
     And I should see the Active Admin layout
-
