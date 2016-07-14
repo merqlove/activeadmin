@@ -7,6 +7,10 @@ def ensure_user_created(email)
   user
 end
 
+def rails5_fallback(a, b)
+  Rails::VERSION::MAJOR > 4 ? a : b
+end
+
 Given /^(?:I am logged|log) out$/ do
   click_link 'Logout' if page.all(:css, "a", text: 'Logout').any?
 end
@@ -14,6 +18,12 @@ end
 Given /^I am logged in$/ do
   step 'log out'
   login_as ensure_user_created 'admin@example.com'
+end
+
+Given /^I (should|should not) see failure "([^"]*)" or "([^"]*)"$/ do |maybe, rails5, rails4|
+  verb    = maybe == 'should' ? :to : :to_not
+  message = rails5_fallback(rails5, rails4)
+  expect(page).send verb, have_content(message)
 end
 
 # only for @requires-reloading scenario
